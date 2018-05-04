@@ -4,10 +4,12 @@
 
 #include "Board.h"
 
-Board::Board(size_t a) :board(new char[a*a]), length(a){
-    for(int i=0;i<a*a;i++){
-        board[i]='.';
-    }
+Board::Board(size_t a) :board(new square[a*a]), length(a){
+
+}
+
+Board::Board (Board &other) :board(new square[other.length*other.length]), length(other.length){
+    copy(other);
 }
 Board::~Board() {
     delete [] board;
@@ -18,12 +20,36 @@ ostream & operator<<(ostream& os,const Board& b) {
         for (int j = 0; j < b.length; ++j) {
             os<<b.board[i*b.length+j];
         }
-        if(i<b.length-1) os<<endl;
+        os<<endl;
     }
     return os;
 }
 
-char& Board::operator[](coordinates a) {
+
+
+square & Board::operator[](coordinates a) {
+    if(a.x>=length||a.x<0||a.y>=length||a.y<0) throw IllegalCoordinateException(a);
     return board[a.x*length+a.y];
 
+}
+
+Board& Board::operator=(const char in) {
+    if (in!='X'&&in!='O'&&in!='.') throw IllegalCharException(in);
+    for(int i=0;i<this->length;i++){
+        for (int j = 0; j < this->length; ++j) {
+            this->board[i*this->length+j]=in;
+        }
+    }
+    return *this;
+}
+void Board::copy (const Board &other) {
+    for(int i=0;i<this->length;i++){
+        for (int j = 0; j < this->length; ++j) {
+            this->board[i*this->length+j]=other.board[i*this->length+j];
+        }
+    }
+}
+Board& Board::operator=(const Board& in) {
+    copy(in);
+    return *this;
 }
