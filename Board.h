@@ -12,17 +12,17 @@
 using namespace std;
 //class of board such that square i,j is board[length*i+j]
 
-class coordinates {
+class coordinates { //the class of place in the board
 public:
     int x;
     int y;
 
-    friend ostream &operator<< (ostream &os, const coordinates &a);
+    friend ostream &operator<< (ostream &os, const coordinates &a);//print
 
-    coordinates (int x, int y);
+    coordinates (int x, int y);//constractor
 };
 
-class square {
+class square { // //the class of square in the board
 
 private:
 
@@ -31,13 +31,13 @@ private:
 public:
     friend class Board;
 
-    square ();
+    square ();//constractor
 
-    char &operator= (const char &in);
+    char &operator= (const char &in);//set operator
 
-    square &operator= (const square &in);
+    square &operator= (const square &in);//set operator
 
-    friend ostream &operator<< (ostream &os, const square &a);
+    friend ostream &operator<< (ostream &os, const square &a); // print
 };
 
 class IllegalCoordinateException {
@@ -70,13 +70,13 @@ public:
 
     ~Board ();
 
-    friend ostream &operator<< (ostream &os, const Board &a);
+    friend ostream &operator<< (ostream &os, const Board &a);//print
 
-    square &operator[] (coordinates a);
+    square &operator[] (coordinates a);// operator
 
-    Board &operator= (const char in);
+    Board &operator= (const char in);// set operator
 
-    Board &operator= (const Board& in);
+    Board &operator= (const Board& in);// set copy operator
 
 };
 

@@ -4,18 +4,18 @@
 
 #include "Board.h"
 
-Board::Board(size_t a) :board(new square[a*a]), length(a){
+Board::Board(size_t a) :board(new square[a*a]), length(a){ //new constracrot
 
 }
 
-Board::Board (Board &other) :board(new square[other.length*other.length]), length(other.length){
+Board::Board (Board &other) :board(new square[other.length*other.length]), length(other.length){ // copy constractor
     copy(other);
 }
-Board::~Board() {
+Board::~Board() { // destracrot
     delete [] board;
 }
 
-ostream & operator<<(ostream& os,const Board& b) {
+ostream & operator<<(ostream& os,const Board& b) { //print
     for(int i=0;i<b.length;i++){
         for (int j = 0; j < b.length; ++j) {
             os<<b.board[i*b.length+j];
@@ -27,13 +27,13 @@ ostream & operator<<(ostream& os,const Board& b) {
 
 
 
-square & Board::operator[](coordinates a) {
+square & Board::operator[](coordinates a) {// operator
     if(a.x>=length||a.x<0||a.y>=length||a.y<0) throw IllegalCoordinateException(a);
     return board[a.x*length+a.y];
 
 }
 
-Board& Board::operator=(const char in) {
+Board& Board::operator=(const char in) {//set operator
     if (in!='X'&&in!='O'&&in!='.') throw IllegalCharException(in);
     for(int i=0;i<this->length;i++){
         for (int j = 0; j < this->length; ++j) {
@@ -42,14 +42,19 @@ Board& Board::operator=(const char in) {
     }
     return *this;
 }
-void Board::copy (const Board &other) {
+void Board::copy (const Board &other) {//set copy board
     for(int i=0;i<this->length;i++){
         for (int j = 0; j < this->length; ++j) {
             this->board[i*this->length+j]=other.board[i*this->length+j];
         }
     }
 }
-Board& Board::operator=(const Board& in) {
+Board& Board::operator=(const Board& in) {//set copy operator
+    if(length!=in.length){
+        delete [] board;
+        board = new square[in.length*in.length];
+        length = in.length;
+    }
     copy(in);
     return *this;
 }
