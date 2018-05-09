@@ -1,16 +1,19 @@
-all: board.o square.o coordinates.o exeptions.o
+CXX=clang++-5.0
+CPPFLAGS=-std=c++17 
 
-board.o: Board.cpp
-	clang++ -c -std=c++11  Board.cpp
+all: Board.o square.o coordinates.o exeptions.o
+
+Board.o: Board.cpp Board.h
+	$(CXX) $(CPPFLAGS) --compile  Board.cpp -o Board.o
 
 square.o: square.cpp
-	clang++ -c -std=c++11 square.cpp
+	$(CXX) $(CPPFLAGS) --compile square.cpp -o square.o
 
 coordinates.o: coordinates.cpp
-	clang++ -c -std=c++11 coordinates.cpp
+	$(CXX) $(CPPFLAGS) --compile coordinates.cpp -o coordinates.o
 
 exeptions.o: exeptions.cpp
-	clang++ -c -std=c++11 exeptions.cpp
+	$(CXX) $(CPPFLAGS) --compile exeptions.cpp -o exeptions.o
 
 clean:
 	rm -rf *.o hello
