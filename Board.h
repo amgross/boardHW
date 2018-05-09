@@ -38,6 +38,8 @@ public:
     square &operator= (const square &in);//set operator
 
     friend ostream &operator<< (ostream &os, const square &a); // print
+    
+    bool operator== (const char &in);
 };
 
 class IllegalCoordinateException {
