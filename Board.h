@@ -39,7 +39,7 @@ public:
 
     friend ostream &operator<< (ostream &os, const square &a); // print
     
-    bool operator== (const char &in);
+    bool operator== (const char &in) const;
 };
 
 class IllegalCoordinateException {
