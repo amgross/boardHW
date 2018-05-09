@@ -21,7 +21,7 @@ square& square::operator=(const square& in){//set operator
 ostream& operator<<(ostream& os,const square& a){//print
     return os<<a.shape;
 }
-bool square::operator== (const char &in) {
+bool square::operator== (const char &in) const {
     if (shape == in) return  true;
     return false;
 }
