@@ -78,5 +78,7 @@ public:
 
     Board &operator= (const Board& in);// set copy operator
 
+    bool operator== (const Board& in);
+
 };
 

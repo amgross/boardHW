@@ -58,3 +58,13 @@ Board& Board::operator=(const Board& in) {//set copy operator
     copy(in);
     return *this;
 }
+
+bool Board::operator== (const Board &in) {
+    if (length!=in.length)return  false;
+    for(int i=0;i<this->length;i++){
+        for (int j = 0; j < this->length; ++j) {
+            if(this->board[i*length+j].shape!=in.board[i*length+j].shape) return false;
+        }
+    }
+    return true;
+}
