@@ -1,7 +1,4 @@
-all: hello
-
-hello: board.o square.o coordinates.o exeptions.o
-	clang++ main.o board.o square.o coordinates.o exeptions.o -std=c++11 -o hello
+all: board.o square.o coordinates.o exeptions.o
 
 board.o: Board.cpp
 	clang++ -c -std=c++11  Board.cpp
