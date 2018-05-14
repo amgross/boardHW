@@ -10,7 +10,7 @@ add_executable(boardHW_master
         .gitignore
         Board.cpp
         Board.h
-        coordinates.cpp
+        Coordinate.cpp
         exeptions.cpp
         LICENSE
         main.cpp

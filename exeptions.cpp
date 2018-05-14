@@ -3,12 +3,12 @@
 //
 
 #include "Board.h"
-IllegalCoordinateException::IllegalCoordinateException(coordinates bad) :wrongPlace(bad.x,bad.y) {
+IllegalCoordinateException::IllegalCoordinateException(Coordinate bad) :wrongPlace(bad.x,bad.y) {
     wrongPlace.x=bad.x;
     wrongPlace.y=bad.y;
 }
 
-const coordinates& IllegalCoordinateException::theCoordinate() const{
+const Coordinate& IllegalCoordinateException::theCoordinate() const{
     return  wrongPlace;
 }
 
