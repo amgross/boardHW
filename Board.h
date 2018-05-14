@@ -62,12 +62,12 @@ public:
 
 class Board {
 private:
-    size_t length;
+    uint length;
     square *board;
     void copy(const Board& other);
 public:
 
-    Board (size_t a);
+    Board (uint a);
     Board (Board& other);
 
     ~Board ();
@@ -83,7 +83,7 @@ public:
     Board &operator= (const Board& in);// set copy operator
 
     bool operator== (const Board& in);
-    int size() const { return length;};
+    uint size() const { return length;};
 
 };
 

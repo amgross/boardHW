@@ -4,7 +4,7 @@
 
 #include "Board.h"
 
-Board::Board(size_t a) :board(new square[a*a]), length(a){ //new constracrot
+Board::Board(uint a) :board(new square[a*a]), length(a){ //new constracrot
 
 }
 
