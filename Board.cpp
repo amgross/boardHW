@@ -27,9 +27,15 @@ ostream & operator<<(ostream& os,const Board& b) { //print
 
 
 
-square & Board::operator[](coordinates a) {// operator
-    if(a.x>=length||a.x<0||a.y>=length||a.y<0) throw IllegalCoordinateException(a);
+square & Board::operator[](Coordinate a) {// operator
+    if(a.x>=length||a.y>=length) throw IllegalCoordinateException(a);
     return board[a.x*length+a.y];
+
+}
+
+char & Board::operator[](Coordinate a) const{// operator
+    if(a.x>=length||a.y>=length) throw IllegalCoordinateException(a);
+    return board[a.x*length+a.y].shape;
 
 }
 

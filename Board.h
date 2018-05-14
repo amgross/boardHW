@@ -1,7 +1,7 @@
 //
 // Created by אריה גרוס on 04 מאי 2018.
 //
-
+#pragma once
 #ifndef BOARDHW_BOARD_H
 #define BOARDHW_BOARD_H
 
@@ -14,12 +14,12 @@ using namespace std;
 
 class Coordinate { //the class of place in the board
 public:
-    int x;
-    int y;
+    uint x;
+    uint y;
 
     friend ostream &operator<< (ostream &os, const Coordinate &a);//print
 
-    Coordinate (int x, int y);//constractor
+    Coordinate (uint x, uint y);//constractor
 };
 
 class square { // //the class of square in the board
@@ -76,11 +76,14 @@ public:
 
     square &operator[] (Coordinate a);// operator
 
+    char &operator[] (Coordinate a) const;// operator
+
     Board &operator= (const char in);// set operator
 
     Board &operator= (const Board& in);// set copy operator
 
     bool operator== (const Board& in);
+    int size() const { return length;};
 
 };
 

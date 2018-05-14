@@ -6,7 +6,7 @@ ostream & operator<<(ostream &os, const Coordinate &a) { // print
     return os<<a.x<<","<<a.y;
 }
 
-Coordinate::Coordinate(int x, int y) { //constractor
+Coordinate::Coordinate(uint x, uint y) { //constractor
     this->x=x;
     this->y=y;
 }
