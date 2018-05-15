@@ -13,6 +13,5 @@ add_executable(boardHW_master
         Coordinate.cpp
         exeptions.cpp
         LICENSE
-        main.cpp
         README.md
         square.cpp)
