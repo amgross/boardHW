@@ -4,14 +4,14 @@
 #pragma once
 #ifndef BOARDHW_MASTER_PLAYER_H
 #define BOARDHW_MASTER_PLAYER_H
-
-#endif //BOARDHW_MASTER_PLAYER_H
-
 #include "Board.h"
 class  Player {
-protected:
-    char myChar;
+
 public:
-    virtual const string name() const  { return "XYPlayer"; }
-    virtual const Coordinate play(const Board& board) ;
+    char myChar;
+    virtual char getChar() const { return myChar;};
+    virtual const string name() const=0 ;
+    virtual const Coordinate play(const Board& board) =0;
 };
+#endif //BOARDHW_MASTER_PLAYER_H
+

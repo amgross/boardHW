@@ -40,6 +40,10 @@ public:
     friend ostream &operator<< (ostream &os, const square &a); // print
     
     bool operator== (const char &in) const;
+
+    bool operator!= (const char &in) const;
+
+    bool operator!= (const square &in) const;
 };
 
 class IllegalCoordinateException {

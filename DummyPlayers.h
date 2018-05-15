@@ -3,7 +3,6 @@
 #include "Player.h"
 
 
-
 /* 
 	This player scans the board looping on x then on y, 
 	and plays on the first empty cell. 

@@ -25,3 +25,13 @@ bool square::operator== (const char &in) const {
     if (shape == in) return  true;
     return false;
 }
+
+bool square::operator!= (const char &in) const {
+    if (shape != in) return  true;
+    return false;
+}
+
+bool square::operator!= (const square &in) const {
+    if (shape != in.shape) return  true;
+    return false;
+}
