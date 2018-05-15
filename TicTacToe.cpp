@@ -19,6 +19,24 @@ bool win(Coordinate last,Board check){
         }
     }
     if (flag) return true;
+    if (flag) return true;
+    flag = true;
+    for(uint i=0;i<check.size();i++){
+        if (check[last]!=check[{i,i}]){
+            flag = false;
+            break;
+        }
+    }
+    if (flag) return true;
+    flag = true;
+    for(uint i=0;i<check.size();i++){
+        if (check[last]!=check[{i,check.size()-1-i}]){
+            flag = false;
+            break;
+        }
+    }
+    if (flag) return true;
+
     return false;
 }
 TicTacToe::TicTacToe (uint size) :MyBoard(size){
