@@ -1,5 +1,5 @@
 //
-// Created by אריה גרוס on 04 מאי 2018.
+// Created by arye gross on 04  2018.
 //
 #include "Board.h"
 

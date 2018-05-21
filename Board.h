@@ -87,6 +87,7 @@ public:
     Board &operator= (const Board& in);// set copy operator
 
     bool operator== (const Board& in);
+
     uint size() const { return length;};
 
 };
