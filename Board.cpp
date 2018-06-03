@@ -4,7 +4,6 @@
 
 #include "Board.h"
 #include <fstream>
-using  namespace std;
 
 
 Board::Board(){ //new empty constracrot
@@ -83,18 +82,16 @@ bool Board::operator== (const Board &in) {
 istream& operator>>(istream & input, Board &board){
     uint counter=0;//for lines
     string st, line;
-    cout << "t";
     input >> st;
-    st="G:\\b1.txt";
-    cout << st;
     ifstream myfile (st);// from http://www.cplusplus.com/doc/tutorial/files/
     if (myfile.is_open()) {
         getline (myfile,line);//need one out of the loop, for creating the table
-        board.board = new square[line.length()*line.length()];
-        board.length = line.length();
+        uint lineLenght = line.length()-1;
+        board.board = new square[lineLenght*lineLenght];
+        board.length = lineLenght;
 
         do  {                       //for each line
-            for(uint i=0; i<line.length();i++) {// //for each cell
+            for(uint i=0; i<lineLenght;i++) {// //for each cell
                 switch (line.at(i)){
                     case 'X': board[{counter,i}]='X';
                         break;
@@ -113,7 +110,7 @@ istream& operator>>(istream & input, Board &board){
 }
 string Board::draw (uint n) {
     const int cell = n/length;
-    unsigned int rowCount = 0;
+    uint rowCount = 0;
     ofstream imageFile("dsvds.ppm");
     imageFile << "P6" << endl << n <<" " << n << endl << 255 << endl;
     for (int j = 0; j < n; ++j)  {
@@ -121,24 +118,24 @@ string Board::draw (uint n) {
         for (int i = 0; i < n; ++i) {
             if (j % cell == 0 || i % cell == 0
                     || j == n-1 || i == n-1 ) {
-                imageFile << 0 << 0 << 0;
+                imageFile << (char)0 << (char)0 << (char)0;
                 cellCount++;
                 continue;
             }
             if (board[rowCount*length+cellCount].shape == 'X') {
-                if ( (i%cell) == (j%cell) || (i%cell) == cell - (j%cell) )
-                    imageFile << 255 << 0 << 0;
-                continue;
+                if ( (i%cell) == (j%cell) || (i%cell) == cell - (j%cell) ){
+                    imageFile << (char)255 << (char)0 << (char)0;
+                    continue;}
             }
             if (board[rowCount*length+cellCount].shape == 'O') {
                 if ( ((i%cell)-(cell/2))*((i%cell)-(cell/2))+
                         ((j%cell)-(cell/2)) * ((j%cell)-(cell/2)) ==
-                        (cell/2) * (cell/2) )//circle, (x-a)^2+(y-b)^2=r^2
-                    imageFile << 0 << 0 << 255;
-                continue;
-            }
+                        (cell/2) * (cell/2) ) {//circle, (x-a)^2+(y-b)^2=r^2
+                    imageFile << (char)0 << (char)0 << (char)255;
+                    continue;
+            }}
 
-            imageFile << 255 << 255 << 255;
+            imageFile << (char)255 << (char)255 << (char)255;
         }
         rowCount++;
     }
