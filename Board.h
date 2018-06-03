@@ -70,7 +70,7 @@ private:
     square *board;
     void copy(const Board& other);
 public:
-
+    Board ();
     Board (uint a);
     Board (Board& other);
 
@@ -87,6 +87,10 @@ public:
     Board &operator= (const Board& in);// set copy operator
 
     bool operator== (const Board& in);
+
+    friend istream& operator>>(istream & input, Board &board1); // input
+
+    string draw (uint n);
 
     uint size() const { return length;};
 
