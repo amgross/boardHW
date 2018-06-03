@@ -111,10 +111,19 @@ istream& operator>>(istream & input, Board &board){
 string Board::draw (uint n) {
     const int cell = n/length;
     uint rowCount = 0;
-    ofstream imageFile("dsvds.ppm");
+
+    string fName = "board_picture", lName = ".ppm"; // find free filename
+    uint mName = 0;
+    bool nameExist= true;
+    do {
+        ifstream infile(fName+to_string(++mName)+lName);
+        nameExist=infile.good(); }
+    while(nameExist);
+
+    ofstream imageFile(fName+to_string(mName)+lName);
     imageFile << "P6" << endl << n <<" " << n << endl << 255 << endl;
     for (int j = 0; j < n; ++j)  {
-        unsigned int cellCount = 0;
+        int cellCount = -1; // because of the first border
         for (int i = 0; i < n; ++i) {
             if (j % cell == 0 || i % cell == 0
                     || j == n-1 || i == n-1 ) {
@@ -128,18 +137,20 @@ string Board::draw (uint n) {
                     continue;}
             }
             if (board[rowCount*length+cellCount].shape == 'O') {
-                if ( ((i%cell)-(cell/2))*((i%cell)-(cell/2))+
-                        ((j%cell)-(cell/2)) * ((j%cell)-(cell/2)) ==
-                        (cell/2) * (cell/2) ) {//circle, (x-a)^2+(y-b)^2=r^2
+                int circle = ((i%cell)-(cell/2))*((i%cell)-(cell/2))+
+                              ((j%cell)-(cell/2)) * ((j%cell)-(cell/2))-
+                              (cell/2) * (cell/2);//circle, (x-x1)^2+(y-y1)^2=r^2
+                if ( circle<0 ) {
                     imageFile << (char)0 << (char)0 << (char)255;
                     continue;
             }}
 
             imageFile << (char)255 << (char)255 << (char)255;
         }
-        rowCount++;
+        if (j % cell == 0 && j != 0)
+            rowCount++;
     }
     imageFile.close();
-    return "ssas";
+    return fName+to_string(mName)+lName;
 }
 
